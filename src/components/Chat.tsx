@@ -29,13 +29,13 @@ interface Message {
 
 const TypingIndicator: React.FC = () => {
   return (
-    <div className="flex items-center space-x-1 p-3 bg-gray-100 rounded-2xl rounded-bl-md max-w-xs">
+    <div className="flex items-center space-x-1 p-3 bg-secondary rounded-2xl rounded-bl-md max-w-xs">
       <div className="flex space-x-1">
-        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
       </div>
-      <span className="text-xs text-gray-500 ml-2">AI sedang mengetik...</span>
+      <span className="text-xs text-muted-foreground ml-2">AI sedang mengetik...</span>
     </div>
   );
 };
@@ -47,23 +47,23 @@ const FileSourceIndicator: React.FC<{ sources: ChatSource[], onSourceClick: (sou
   if (sources.length === 0) return null;
 
   return (
-    <div className="mt-2 p-2 bg-blue-50 border border-blue-200 rounded-lg">
+    <div className="mt-2 p-2 bg-secondary border border-accent/30 rounded-lg">
       <div className="flex items-center gap-2 mb-2">
-        <FileText className="w-4 h-4 text-blue-600" />
-        <span className="text-xs font-medium text-blue-800">
+        <FileText className="w-4 h-4 text-accent" />
+        <span className="text-xs font-medium text-foreground">
           Jawaban berdasarkan {sources.length} sumber knowledge
         </span>
       </div>
       
       {fileSources.length > 0 && (
         <div className="mb-2">
-          <p className="text-xs text-blue-700 mb-1">📁 Dari file ({fileSources.length}):</p>
+          <p className="text-xs text-muted-foreground mb-1">📁 Dari file ({fileSources.length}):</p>
           <div className="flex flex-wrap gap-1">
             {fileSources.map((source, index) => (
               <button
                 key={index}
                 onClick={() => onSourceClick(source)}
-                className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded text-xs transition-colors"
+                className="inline-flex items-center gap-1 px-2 py-1 accent/20 hover:bg-muted/40 text-foreground rounded text-xs transition-colors"bg-
               >
                 <File className="w-3 h-3" />
                 {source.file_info?.filename || source.title}
@@ -75,13 +75,13 @@ const FileSourceIndicator: React.FC<{ sources: ChatSource[], onSourceClick: (sou
 
       {manualSources.length > 0 && (
         <div>
-          <p className="text-xs text-blue-700 mb-1">✏️ Manual ({manualSources.length}):</p>
+          <p className="text-xs text-muted-foreground mb-1">✏️ Manual ({manualSources.length}):</p>
           <div className="flex flex-wrap gap-1">
             {manualSources.map((source, index) => (
               <button
                 key={index}
                 onClick={() => onSourceClick(source)}
-                className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-xs transition-colors"
+                className="inline-flex items-center gap-1 px-2 py-1 bg-secondary hover:bg-secondary/80 text-foreground rounded text-xs transition-colors"
               >
                 <FileText className="w-3 h-3" />
                 {source.title}
@@ -250,15 +250,15 @@ const Chat: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Chat Container */}
-      <div className="flex flex-col h-[650px] mx-auto border-1 rounded-md">
+      <div className="flex flex-col h-[650px] mx-auto border rounded-md bg-background">
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b bg-white rounded-t-lg">
+        <div className="flex justify-between items-center p-4 border-b bg-card rounded-t-lg">
           <div>
-            <h2 className="text-xl font-semibold text-gray-800">Chat dengan AI</h2>
-            <p className="text-sm text-gray-500">
+            <h2 className="text-xl font-semibold text-foreground">Chat dengan AI</h2>
+            <p className="text-sm text-muted-foreground">
               Tanyakan apapun tentang knowledge base Anda
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Model : Google Gemini 2.5 Flash
             </p>
           </div>
@@ -279,14 +279,14 @@ const Chat: React.FC = () => {
         {/* Chat Messages Container */}
         <div 
           ref={chatContainerRef}
-          className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
+          className="flex-1 overflow-y-auto p-4 space-y-4 bg-background"
           style={{ scrollBehavior: 'smooth' }}
         >
           {messages.length === 0 && (
             <div className="flex items-center justify-center h-full">
-              <div className="text-center text-gray-500">
-                <Bot className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                <p className="text-lg font-medium">Mulai percakapan</p>
+              <div className="text-center text-muted-foreground">
+                <Bot className="w-12 h-12 mx-auto mb-4 text-accent" />
+                <p className="text-lg font-medium text-foreground">Mulai percakapan</p>
                 <p className="text-sm">Ketik pesan untuk memulai chat dengan AI</p>
               </div>
             </div>
@@ -300,8 +300,8 @@ const Chat: React.FC = () => {
                 {/* Avatar */}
                 <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
                   msg.type === 'user' 
-                    ? 'bg-blue-500 text-white' 
-                    : 'bg-gray-200 text-gray-600'
+                    ? 'bg-muted text-background' 
+                    : 'bg-secondary text-background'
                 }`}>
                   {msg.type === 'user' ? (
                     <User className="w-4 h-4" />
@@ -314,13 +314,13 @@ const Chat: React.FC = () => {
                 <div className="flex flex-col">
                   <div className={`px-4 py-2 rounded-2xl ${
                     msg.type === 'user'
-                      ? 'bg-blue-500 text-white rounded-br-md'
-                      : 'bg-white text-gray-800 rounded-bl-md shadow-sm border'
+                      ? 'bg-muted text-background rounded-br-md'
+                      : 'bg-card text-foreground rounded-bl-md shadow-sm border border-border'
                   }`}>
                     {msg.type === 'user' ? (
                       <p className="text-sm whitespace-pre-wrap break-words">{msg.content}</p>
                     ) : (
-                      <div className="text-sm prose prose-sm max-w-none">
+                      <div className="text-sm prose prose-sm max-w-none prose-invert">
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm, remarkMath]}
                           rehypePlugins={[rehypeKatex]}
@@ -329,59 +329,59 @@ const Chat: React.FC = () => {
                             code: ({ inline, className, children, ...props }: React.ComponentPropsWithRef<'code'> & { inline?: boolean }) => {
                               /language-(\w+)/.exec(className || '');
                               return !inline ? (
-                                <pre className="bg-gray-100 rounded p-2 overflow-x-auto">
+                                <pre className="bg-secondary rounded p-2 overflow-x-auto">
                                   <code className={className} {...props}>
                                     {children}
                                   </code>
                                 </pre>
                               ) : (
-                                <code className="bg-gray-100 px-1 rounded text-xs" {...props}>
+                                <code className="bg-secondary px-1 rounded text-xs" {...props}>
                                   {children}
                                 </code>
                               );
                             },
                             // Customize paragraphs
                             p: ({ children }) => (
-                              <p className="mb-2 last:mb-0">{children}</p>
+                              <p className="mb-2 last:mb-0 text-foreground">{children}</p>
                             ),
                             // Customize lists
                             ul: ({ children }) => (
-                              <ul className="list-disc list-inside mb-2">{children}</ul>
+                              <ul className="list-disc list-inside mb-2 text-foreground">{children}</ul>
                             ),
                             ol: ({ children }) => (
-                              <ol className="list-decimal list-inside mb-2">{children}</ol>
+                              <ol className="list-decimal list-inside mb-2 text-foreground">{children}</ol>
                             ),
                             // Customize headings
                             h1: ({ children }) => (
-                              <h1 className="text-lg font-bold mb-2">{children}</h1>
+                              <h1 className="text-lg font-bold mb-2 text-foreground">{children}</h1>
                             ),
                             h2: ({ children }) => (
-                              <h2 className="text-base font-bold mb-2">{children}</h2>
+                              <h2 className="text-base font-bold mb-2 text-foreground">{children}</h2>
                             ),
                             h3: ({ children }) => (
-                              <h3 className="text-sm font-bold mb-1">{children}</h3>
+                              <h3 className="text-sm font-bold mb-1 text-foreground">{children}</h3>
                             ),
                             // Customize tables
                             table: ({ children }) => (
                               <div className="overflow-x-auto mb-2">
-                                <table className="min-w-full border-collapse border border-gray-300">
+                                <table className="min-w-full border-collapse border border-border">
                                   {children}
                                 </table>
                               </div>
                             ),
                             th: ({ children }) => (
-                              <th className="border border-gray-300 px-2 py-1 bg-gray-100 font-semibold text-left">
+                              <th className="border border-border px-2 py-1 bg-secondary font-semibold text-left text-foreground">
                                 {children}
                               </th>
                             ),
                             td: ({ children }) => (
-                              <td className="border border-gray-300 px-2 py-1">
+                              <td className="border border-border px-2 py-1 text-foreground">
                                 {children}
                               </td>
                             ),
                             // Customize blockquotes
                             blockquote: ({ children }) => (
-                              <blockquote className="border-l-4 border-gray-300 pl-3 italic mb-2">
+                              <blockquote className="border-l-4 border-accent pl-3 italic mb-2 text-muted-foreground">
                                 {children}
                               </blockquote>
                             ),
@@ -401,7 +401,7 @@ const Chat: React.FC = () => {
                     />
                   )}
                   
-                  <span className={`text-xs text-gray-400 mt-1 ${
+                  <span className={`text-xs text-muted-foreground mt-1 ${
                     msg.type === 'user' ? 'text-right' : 'text-left'
                   }`}>
                     {formatTime(msg.timestamp)}
@@ -415,8 +415,8 @@ const Chat: React.FC = () => {
           {isLoading && (
             <div className="flex justify-start">
               <div className="flex items-end space-x-2">
-                <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                  <Bot className="w-4 h-4 text-gray-600" />
+                <div className="flex-shrink-0 w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
+                  <Bot className="w-4 h-4 text-foreground" />
                 </div>
                 <TypingIndicator />
               </div>
@@ -428,20 +428,20 @@ const Chat: React.FC = () => {
 
         {/* Error Message */}
         {error && (
-          <div className="p-3 mx-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-sm text-red-800">{error}</p>
+          <div className="p-3 mx-4 bg-destructive/10 border border-destructive/30 rounded-lg">
+            <p className="text-sm text-destructive">{error}</p>
           </div>
         )}
 
         {/* Input Area */}
-        <div className="p-4 bg-white border-t rounded-b-lg">
+        <div className="p-4 bg-card border-t border-border rounded-b-lg">
           <form onSubmit={handleSubmit} className="flex gap-2">
             <Input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Ketik pesan Anda di sini..."
               disabled={isLoading}
-              className="flex-1 rounded-full border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              className="flex-1 rounded-full border-border focus:border-accent focus:ring-accent bg-background text-foreground"
               onKeyPress={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
@@ -452,7 +452,7 @@ const Chat: React.FC = () => {
             <Button 
               type="submit" 
               disabled={isLoading || !message.trim()}
-              className="rounded-full w-10 h-10 p-0 bg-blue-500 hover:bg-blue-600"
+              className="rounded-full w-10 h-10 p-0 bg-muted hover:bg-muted/90 text-background"
             >
               <Send className="w-4 h-4" />
             </Button>
@@ -463,18 +463,18 @@ const Chat: React.FC = () => {
       {/* Sources - Separate from chat container */}
       {sources.length > 0 && (
         <div className="max-w-4xl mx-auto space-y-3">
-          <h3 className="text-sm font-medium text-gray-700">Sumber Referensi:</h3>
+          <h3 className="text-sm font-medium text-foreground">Sumber Referensi:</h3>
           <div className="grid gap-3 md:grid-cols-2">
             {sources.map((source, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow cursor-pointer group">
+              <Card key={index} className="hover:shadow-md transition-shadow cursor-pointer group border-border bg-card">
                 <CardHeader className="pb-2">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
-                      <CardTitle className="text-sm">{source.title}</CardTitle>
-                      <CardDescription className="text-xs">
+                      <CardTitle className="text-sm text-foreground">{source.title}</CardTitle>
+                      <CardDescription className="text-xs text-muted-foreground">
                         {source.source}
                         {source.file_info && (
-                          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-blue-100 text-blue-800">
+                          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-muted/20 text-foreground">
                             📁 {source.file_info.file_type?.toUpperCase()}
                           </span>
                         )}
@@ -482,7 +482,7 @@ const Chat: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-1">
                       {source.similarity_score && (
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-muted/20 text-foreground">
                           {(source.similarity_score * 100).toFixed(1)}% match
                         </span>
                       )}
@@ -494,7 +494,7 @@ const Chat: React.FC = () => {
                             e.stopPropagation();
                             handleSourceView(source);
                           }}
-                          className="h-6 w-6 p-0 hover:bg-blue-100"
+                          className="h-6 w-6 p-0 hover:bg-muted/20"
                         >
                           <Eye className="w-3 h-3" />
                         </Button>
@@ -503,7 +503,7 @@ const Chat: React.FC = () => {
                   </div>
                 </CardHeader>
                 <CardContent onClick={() => handleSourceView(source)}>
-                  <p className="text-xs text-gray-600 line-clamp-2">
+                  <p className="text-xs text-muted-foreground line-clamp-2">
                     {source.content}
                   </p>
                 </CardContent>

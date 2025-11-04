@@ -460,7 +460,7 @@ export default function Confessions() {
                       Delete Reply
                     </Button>
                   </div>
-                  <div className="rounded-md bg-green-50 dark:bg-green-950 p-3">
+                  <div className="rounded-md bg-muted dark:bg-green-950 p-3">
                     <p className="text-sm whitespace-pre-wrap">
                       {selectedConfession.reply}
                     </p>
