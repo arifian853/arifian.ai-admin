@@ -71,7 +71,7 @@ export default function Confessions() {
   const [isDeleteReplyDialogOpen, setIsDeleteReplyDialogOpen] = useState(false);
   const [filter, setFilter] = useState<string>('all');
 
-  const API_URL = 'http://localhost:7860';
+  const API_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const getAuthHeaders = () => {
     const token = localStorage.getItem('token');
