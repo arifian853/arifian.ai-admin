@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { logout } from '@/store/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import Confessions from '@/components/Confessions';
 
 export const Dashboard = () => {
     const [refreshKey, setRefreshKey] = useState(0);
@@ -68,7 +69,7 @@ export const Dashboard = () => {
                 </div>
 
                 <Tabs defaultValue="view" className="w-full">
-                    <TabsList className="grid w-full grid-cols-7 mb-8">
+                    <TabsList className="grid w-full grid-cols-8 mb-8">
                         <TabsTrigger value="view" className="text-sm font-medium">
                             View Knowledge
                         </TabsTrigger>
@@ -89,6 +90,9 @@ export const Dashboard = () => {
                         </TabsTrigger>
                         <TabsTrigger value="users" className="text-sm font-medium">
                             User Management
+                        </TabsTrigger>
+                        <TabsTrigger value="confessions" className="text-sm font-medium">
+                            Confessions
                         </TabsTrigger>
                     </TabsList>
 
@@ -118,6 +122,10 @@ export const Dashboard = () => {
 
                     <TabsContent value="users" className="space-y-4">
                         <UserManager />
+                    </TabsContent>
+
+                    <TabsContent value="confessions" className="space-y-4">
+                        <Confessions />
                     </TabsContent>
                 </Tabs>
             </div>

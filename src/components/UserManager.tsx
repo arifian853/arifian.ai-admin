@@ -42,7 +42,7 @@ export function UserManager() {
       const result = await dispatch(fetchUsers()).unwrap();
       setUsers(result);
     } catch (error) {
-      toast.error('Failed to fetch users, please refresh the page');
+      toast.error('Failed to fetch users, please refresh the page or relog');
       console.error('Error fetching users:', error);
     } finally {
       setLoading(false);
