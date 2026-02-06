@@ -1,11 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Progress } from '@/components/ui/progress';
-import { Textarea } from '@/components/ui/textarea';
 import {
     Search,
     Play,
@@ -103,7 +101,8 @@ export const TestRetrieval = () => {
                 status: 'success',
                 timestamp: new Date()
             };
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
             return {
                 query,
                 results_count: 0,
@@ -111,7 +110,7 @@ export const TestRetrieval = () => {
                 duration_seconds: (Date.now() - startTime) / 1000,
                 config: { limit: 5, min_similarity: 0.25 },
                 status: 'error',
-                error: error.message,
+                error: errorMessage,
                 timestamp: new Date()
             };
         }
@@ -135,7 +134,7 @@ export const TestRetrieval = () => {
             } else {
                 toast.error(`Test failed: ${result.error}`);
             }
-        } catch (error) {
+        } catch {
             toast.error('Failed to run test');
         }
 
@@ -180,12 +179,6 @@ export const TestRetrieval = () => {
         const newResults = new Map(results);
         newResults.delete(id);
         setResults(newResults);
-    };
-
-    const getScoreColor = (score: number) => {
-        if (score >= 0.5) return 'text-green-500';
-        if (score >= 0.35) return 'text-yellow-500';
-        return 'text-red-500';
     };
 
     const getScoreBadgeVariant = (score: number): 'default' | 'secondary' | 'destructive' => {
