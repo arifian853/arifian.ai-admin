@@ -92,7 +92,7 @@ export function AddKnowledge({ onKnowledgeAdded }: AddKnowledgeProps) {
     <div className="w-full mx-auto">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Add New Knowledge</h2>
+          <h2 className="text-2xl font-bold text-white">Add New Knowledge</h2>
           <p className="text-gray-600 mb-4">Create a new knowledge entry to share information with your team.</p>
         </div>
       </div>

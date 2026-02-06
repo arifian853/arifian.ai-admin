@@ -33,7 +33,7 @@ export const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!username || !password) {
       toast.error('Please fill in all fields');
       return;
@@ -56,97 +56,93 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-center min-h-[80vh]">
-          <div className="w-full max-w-md">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold tracking-tight text-foreground mb-2">
-                Admin for Arifian.AI
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Login to access your data
-              </p>
-            </div>
-
-            <Card>
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl">Login</CardTitle>
-                <CardDescription>
-                  Enter your credentials to access the system
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="username">Username</Label>
-                    <Input
-                      id="username"
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      placeholder="Enter your username"
-                      required
-                      disabled={isLoading}
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="password">Password</Label>
-                    <div className="relative">
-                      <Input
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Enter your password"
-                        required
-                        disabled={isLoading}
-                        className="pr-10"
-                      />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                        onClick={togglePasswordVisibility}
-                        disabled={isLoading}
-                      >
-                        {showPassword ? (
-                          <EyeOff className="h-4 w-4 text-muted-foreground" />
-                        ) : (
-                          <Eye className="h-4 w-4 text-muted-foreground" />
-                        )}
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Button 
-                      type="submit" 
-                      className="w-full"
-                      disabled={isLoading || !username || !password}
-                    >
-                      <LogIn className="w-4 h-4 mr-2" />
-                      {isLoading ? 'Logging in...' : 'Login'}
-                    </Button>
-                    
-                    <Button 
-                      type="button"
-                      variant="outline"
-                      className="w-full"
-                      onClick={handleBackToHome}
-                      disabled={isLoading}
-                    >
-                      <ArrowLeft className="w-4 h-4 mr-2" />
-                      Back to Home
-                    </Button>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="w-full max-w-md px-6">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground mb-2">
+            Admin for Arifian.AI
+          </h1>
+          <p className="text-base text-muted-foreground">
+            Login to access your data
+          </p>
         </div>
+
+        <Card>
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl">Login</CardTitle>
+            <CardDescription>
+              Enter your credentials to access the system
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="username">Username</Label>
+                <Input
+                  id="username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Enter your username"
+                  required
+                  disabled={isLoading}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    required
+                    disabled={isLoading}
+                    className="pr-10"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                    onClick={togglePasswordVisibility}
+                    disabled={isLoading}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4 text-muted-foreground" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </Button>
+                </div>
+              </div>
+
+              <div className="space-y-2 pt-2">
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isLoading || !username || !password}
+                >
+                  <LogIn className="w-4 h-4" />
+                  {isLoading ? 'Logging in...' : 'Login'}
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full"
+                  onClick={handleBackToHome}
+                  disabled={isLoading}
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Home
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

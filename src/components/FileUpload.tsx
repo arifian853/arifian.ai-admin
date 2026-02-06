@@ -199,7 +199,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess }) => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Upload File</h2>
+          <h2 className="text-2xl font-bold text-white">Upload File</h2>
           <p className="text-gray-600">Upload berbagai jenis file ke knowledge base</p>
         </div>
       </div>

@@ -1,31 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 /* Markdown styling dalam chat */
 .prose {
   color: inherit;
+  font-family: 'Inclusive Sans', sans-serif;
 }
 
 .prose code {
   color: inherit;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(20, 184, 166, 0.15);
   padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
   font-size: 0.875em;
 }
 
 .prose pre {
-  background-color: #f3f4f6;
-  border-radius: 0.375rem;
+  background-color: #18181b;
   padding: 0.75rem;
   overflow-x: auto;
   margin: 0.5rem 0;
+  border: 1px solid #27272a;
 }
 
 .prose pre code {
   background-color: transparent;
   padding: 0;
-  border-radius: 0;
   font-size: 0.875rem;
+  color: #FFFBFF;
 }
 
 /* KaTeX styling */
@@ -52,5 +50,7 @@
 /* Blockquote styling */
 .prose blockquote {
   font-style: italic;
-  color: #6b7280;
+  color: #a1a1aa;
+  border-left: 3px solid #14b8a6;
+  padding-left: 1rem;
 }

@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogDescription, 
-  DialogFooter, 
-  DialogHeader, 
-  DialogTitle 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
 } from './ui/dialog';
 import { type ChatRequest, type ChatResponse, type ChatHistoryItem, type ChatSource } from '../types/knowledge';
 import { Send, Bot, User, Trash2, Info, Eye, FileText, File } from 'lucide-react';
@@ -29,11 +29,11 @@ interface Message {
 
 const TypingIndicator: React.FC = () => {
   return (
-    <div className="flex items-center space-x-1 p-3 bg-secondary rounded-2xl rounded-bl-md max-w-xs">
+    <div className="flex items-center space-x-1 p-3 bg-card border border-border rounded-2xl rounded-bl-md max-w-xs">
       <div className="flex space-x-1">
-        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+        <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+        <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+        <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
       </div>
       <span className="text-xs text-muted-foreground ml-2">AI sedang mengetik...</span>
     </div>
@@ -54,7 +54,7 @@ const FileSourceIndicator: React.FC<{ sources: ChatSource[], onSourceClick: (sou
           Jawaban berdasarkan {sources.length} sumber knowledge
         </span>
       </div>
-      
+
       {fileSources.length > 0 && (
         <div className="mb-2">
           <p className="text-xs text-muted-foreground mb-1">📁 Dari file ({fileSources.length}):</p>
@@ -63,7 +63,7 @@ const FileSourceIndicator: React.FC<{ sources: ChatSource[], onSourceClick: (sou
               <button
                 key={index}
                 onClick={() => onSourceClick(source)}
-                className="inline-flex items-center gap-1 px-2 py-1 accent/20 hover:bg-muted/40 text-foreground rounded text-xs transition-colors"bg-
+                className="inline-flex items-center gap-1 px-2 py-1 bg-accent/20 hover:bg-accent/30 text-foreground rounded text-xs transition-colors"
               >
                 <File className="w-3 h-3" />
                 {source.file_info?.filename || source.title}
@@ -181,12 +181,19 @@ const Chat: React.FC = () => {
         body: JSON.stringify(requestBody),
       });
 
+      const data = await response.json();
+
+      // Check if response contains error
+      if (data.error) {
+        const errorMessage = `[${data.error_type || 'ERROR'}] ${data.message}`;
+        const errorDetails = data.details ? `\n\nStep: ${data.details.step || 'unknown'}` : '';
+        throw new Error(errorMessage + errorDetails);
+      }
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data: ChatResponse = await response.json();
-      
       const assistantMessageObj: Message = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
@@ -194,13 +201,21 @@ const Chat: React.FC = () => {
         timestamp: new Date(),
         sources: data.sources || []
       };
-      
+
       setMessages(prev => [...prev, assistantMessageObj]);
       setSources(data.sources || []);
-      
+
     } catch (err) {
       console.error('Error sending message:', err);
-      setError(err instanceof Error ? err.message : 'Terjadi kesalahan saat mengirim pesan');
+      const errorMessage = err instanceof Error ? err.message : 'Terjadi kesalahan saat mengirim pesan';
+      setError(errorMessage);
+
+      // Log full error for debugging
+      console.error('Full error details:', {
+        name: err instanceof Error ? err.name : 'Unknown',
+        message: errorMessage,
+        stack: err instanceof Error ? err.stack : undefined
+      });
     } finally {
       setIsLoading(false);
     }
@@ -241,9 +256,9 @@ const Chat: React.FC = () => {
   };
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('id-ID', { 
-      hour: '2-digit', 
-      minute: '2-digit' 
+    return date.toLocaleTimeString('id-ID', {
+      hour: '2-digit',
+      minute: '2-digit'
     });
   };
 
@@ -277,7 +292,7 @@ const Chat: React.FC = () => {
         </div>
 
         {/* Chat Messages Container */}
-        <div 
+        <div
           ref={chatContainerRef}
           className="flex-1 overflow-y-auto p-4 space-y-4 bg-background"
           style={{ scrollBehavior: 'smooth' }}
@@ -294,29 +309,26 @@ const Chat: React.FC = () => {
 
           {messages.map((msg) => (
             <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`flex items-end space-x-2 max-w-xs lg:max-w-md ${
-                msg.type === 'user' ? 'flex-row-reverse space-x-reverse' : 'flex-row'
-              }`}>
-                {/* Avatar */}
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-                  msg.type === 'user' 
-                    ? 'bg-muted text-background' 
-                    : 'bg-secondary text-background'
+              <div className={`flex items-end space-x-2 max-w-xs lg:max-w-md ${msg.type === 'user' ? 'flex-row-reverse space-x-reverse' : 'flex-row'
                 }`}>
+                {/* Avatar */}
+                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${msg.type === 'user'
+                  ? 'bg-accent text-accent-foreground'
+                  : 'bg-card border border-border text-accent'
+                  }`}>
                   {msg.type === 'user' ? (
                     <User className="w-4 h-4" />
                   ) : (
                     <Bot className="w-4 h-4" />
                   )}
                 </div>
-                
+
                 {/* Message Bubble */}
                 <div className="flex flex-col">
-                  <div className={`px-4 py-2 rounded-2xl ${
-                    msg.type === 'user'
-                      ? 'bg-muted text-background rounded-br-md'
-                      : 'bg-card text-foreground rounded-bl-md shadow-sm border border-border'
-                  }`}>
+                  <div className={`px-4 py-2 rounded-2xl ${msg.type === 'user'
+                    ? 'bg-accent text-accent-foreground rounded-br-md'
+                    : 'bg-card text-foreground rounded-bl-md shadow-sm border border-border'
+                    }`}>
                     {msg.type === 'user' ? (
                       <p className="text-sm whitespace-pre-wrap break-words">{msg.content}</p>
                     ) : (
@@ -392,18 +404,17 @@ const Chat: React.FC = () => {
                       </div>
                     )}
                   </div>
-                  
+
                   {/* File Source Indicator for Assistant Messages */}
                   {msg.type === 'assistant' && msg.sources && msg.sources.length > 0 && (
-                    <FileSourceIndicator 
-                      sources={msg.sources} 
+                    <FileSourceIndicator
+                      sources={msg.sources}
                       onSourceClick={handleSourceView}
                     />
                   )}
-                  
-                  <span className={`text-xs text-muted-foreground mt-1 ${
-                    msg.type === 'user' ? 'text-right' : 'text-left'
-                  }`}>
+
+                  <span className={`text-xs text-muted-foreground mt-1 ${msg.type === 'user' ? 'text-right' : 'text-left'
+                    }`}>
                     {formatTime(msg.timestamp)}
                   </span>
                 </div>
@@ -415,8 +426,8 @@ const Chat: React.FC = () => {
           {isLoading && (
             <div className="flex justify-start">
               <div className="flex items-end space-x-2">
-                <div className="flex-shrink-0 w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
-                  <Bot className="w-4 h-4 text-foreground" />
+                <div className="flex-shrink-0 w-8 h-8 bg-card border border-border rounded-full flex items-center justify-center">
+                  <Bot className="w-4 h-4 text-accent" />
                 </div>
                 <TypingIndicator />
               </div>
@@ -449,12 +460,12 @@ const Chat: React.FC = () => {
                 }
               }}
             />
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               disabled={isLoading || !message.trim()}
-              className="rounded-full w-10 h-10 p-0 bg-muted hover:bg-muted/90 text-background"
+              className="rounded-full w-10 h-10 p-0 bg-accent hover:bg-accent/90"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-4 h-4 text-accent-foreground" />
             </Button>
           </form>
         </div>
@@ -526,8 +537,8 @@ const Chat: React.FC = () => {
           <DialogHeader>
             <DialogTitle>Informasi Penyimpanan Chat</DialogTitle>
             <DialogDescription>
-              Riwayat percakapan Anda disimpan secara lokal di browser menggunakan localStorage. 
-              Data chat akan tetap tersimpan meskipun Anda menutup dan membuka kembali aplikasi, 
+              Riwayat percakapan Anda disimpan secara lokal di browser menggunakan localStorage.
+              Data chat akan tetap tersimpan meskipun Anda menutup dan membuka kembali aplikasi,
               namun akan hilang jika Anda menghapus data browser atau menggunakan mode incognito.
             </DialogDescription>
           </DialogHeader>
