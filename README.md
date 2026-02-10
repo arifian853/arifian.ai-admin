@@ -1,4 +1,4 @@
-<h3 align="center"> Arifian.AI v1.1 Admin Page</h3>
+<h3 align="center"> Arifian.AI v2.0 Admin Page</h3>
 
 Sebuah halaman admin berupa aplikasi web modern untuk mengelola dan mengorganisir knowledge base aplikasi RAG untuk Arifian.AI (akses disini : https://arifian.netlify.app/chat-ai) dengan fitur chat AI yang terintegrasi.
 

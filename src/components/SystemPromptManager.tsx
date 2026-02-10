@@ -293,7 +293,7 @@ export function SystemPromptManager() {
                       </Badge>
                     )}
                     {index === 0 && prompt.is_active && (
-                      <Badge variant="outline" className="border-green-500 text-green-700">
+                      <Badge variant="outline" className="border-green-500 text-green-500">
                         Currently Used
                       </Badge>
                     )}
