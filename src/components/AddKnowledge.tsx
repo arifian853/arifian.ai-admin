@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent} from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { type CreateKnowledgeRequest, type AddKnowledgeResponse } from '@/types/knowledge';
 
 interface AddKnowledgeProps {
@@ -66,7 +66,7 @@ export function AddKnowledge({ onKnowledgeAdded }: AddKnowledgeProps) {
 
       const result: AddKnowledgeResponse = await response.json();
 
-      if (result.id && result.message) {
+      if (result.ids && result.ids.length > 0 && result.message) {
         setMessage({ type: 'success', text: result.message });
         setFormData({ title: '', content: '', source: '', metadata: {} });
         setMetadataInput('');
@@ -150,8 +150,8 @@ export function AddKnowledge({ onKnowledgeAdded }: AddKnowledgeProps) {
 
             {message && (
               <div className={`p-3 rounded-md text-sm ${message.type === 'success'
-                  ? 'bg-green-50 text-green-700 border border-green-200'
-                  : 'bg-red-50 text-red-700 border border-red-200'
+                ? 'bg-green-50 text-green-700 border border-green-200'
+                : 'bg-red-50 text-red-700 border border-red-200'
                 }`}>
                 {message.text}
               </div>

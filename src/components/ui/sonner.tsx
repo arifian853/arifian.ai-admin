@@ -10,7 +10,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-bg": "#18181b",
           "--normal-text": "#FFFBFF",
           "--normal-border": "#27272a",
-          "--success-bg": "#14b8a6",
+          "--success-bg": "#7089A8",
           "--success-text": "#191919",
           "--error-bg": "#ef4444",
           "--error-text": "#FFFBFF",

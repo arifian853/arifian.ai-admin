@@ -6,7 +6,7 @@
 
 .prose code {
   color: inherit;
-  background-color: rgba(20, 184, 166, 0.15);
+  background-color: rgba(112, 137, 168, 0.15);
   padding: 0.125rem 0.25rem;
   font-size: 0.875em;
 }
@@ -51,6 +51,6 @@
 .prose blockquote {
   font-style: italic;
   color: #a1a1aa;
-  border-left: 3px solid #14b8a6;
+  border-left: 3px solid #7089A8;
   padding-left: 1rem;
 }

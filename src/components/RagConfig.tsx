@@ -102,7 +102,7 @@ export const RagConfig = () => {
 
     useEffect(() => {
         loadAll();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (loading) {
@@ -332,7 +332,7 @@ export const RagConfig = () => {
                     <CardContent className="p-4">
                         <div className="flex items-center justify-between text-sm text-muted-foreground">
                             <span>Last updated: {new Date(health.timestamp).toLocaleString()}</span>
-                            <span>API Version: 2.0.0</span>
+                            <span>API Version: 3.0.0</span>
                         </div>
                     </CardContent>
                 </Card>

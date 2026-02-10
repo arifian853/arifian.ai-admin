@@ -6,7 +6,7 @@ import { AddKnowledge } from '@/components/AddKnowledge';
 import { SystemPromptManager } from '@/components/SystemPromptManager';
 import { FileManager } from '@/components/FileManager';
 import { UserManager } from '@/components/UserManager';
-import Chat from '@/components/Chat';
+import GroqChat from '@/components/GroqChat';
 import FileUpload from '@/components/FileUpload';
 import RagConfig from '@/components/RagConfig';
 import TestRetrieval from '@/components/TestRetrieval';
@@ -70,7 +70,7 @@ export const Dashboard = () => {
             case 'view':
                 return <KnowledgeList key={refreshKey} onRefresh={handleRefresh} />;
             case 'chat':
-                return <Chat />;
+                return <GroqChat />;
             case 'test-retrieval':
                 return <TestRetrieval />;
             case 'rag-config':

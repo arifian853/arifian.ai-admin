@@ -27,8 +27,10 @@ export interface UpdateKnowledgeRequest {
 }
 
 export interface AddKnowledgeResponse {
-  id: string;
+  ids: string[];
   message: string;
+  chunked?: boolean;
+  chunk_count?: number;
 }
 
 export interface KnowledgeStats {

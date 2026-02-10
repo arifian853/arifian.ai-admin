@@ -56,31 +56,31 @@
   --card-foreground: #191919;
   --popover: #FFFBFF;
   --popover-foreground: #191919;
-  --primary: #0f766e;
+  --primary: #435A76;
   --primary-foreground: #FFFBFF;
   --secondary: #f4f4f5;
   --secondary-foreground: #191919;
   --muted: #f4f4f5;
   --muted-foreground: #71717a;
-  --accent: #14b8a6;
+  --accent: #7089A8;
   --accent-foreground: #FFFBFF;
   --destructive: #dc2626;
   --border: #e4e4e7;
   --input: #e4e4e7;
-  --ring: #14b8a6;
-  --chart-1: #14b8a6;
-  --chart-2: #0f766e;
+  --ring: #7089A8;
+  --chart-1: #7089A8;
+  --chart-2: #435A76;
   --chart-3: #475569;
   --chart-4: #eab308;
   --chart-5: #f59e0b;
   --sidebar: #FFFBFF;
   --sidebar-foreground: #191919;
-  --sidebar-primary: #0f766e;
+  --sidebar-primary: #435A76;
   --sidebar-primary-foreground: #FFFBFF;
   --sidebar-accent: #f4f4f5;
   --sidebar-accent-foreground: #191919;
   --sidebar-border: #e4e4e7;
-  --sidebar-ring: #14b8a6;
+  --sidebar-ring: #7089A8;
 }
 
 /* Dark Mode */
@@ -91,31 +91,31 @@
   --card-foreground: #FFFBFF;
   --popover: #18181b;
   --popover-foreground: #FFFBFF;
-  --primary: #14b8a6;
+  --primary: #7089A8;
   --primary-foreground: #191919;
   --secondary: #27272a;
   --secondary-foreground: #FFFBFF;
   --muted: #27272a;
   --muted-foreground: #a1a1aa;
-  --accent: #14b8a6;
+  --accent: #7089A8;
   --accent-foreground: #191919;
   --destructive: #ef4444;
   --border: #27272a;
   --input: #27272a;
-  --ring: #14b8a6;
-  --chart-1: #14b8a6;
-  --chart-2: #0f766e;
+  --ring: #7089A8;
+  --chart-1: #7089A8;
+  --chart-2: #435A76;
   --chart-3: #f59e0b;
   --chart-4: #a855f7;
   --chart-5: #ef4444;
   --sidebar: #18181b;
   --sidebar-foreground: #FFFBFF;
-  --sidebar-primary: #14b8a6;
+  --sidebar-primary: #7089A8;
   --sidebar-primary-foreground: #191919;
   --sidebar-accent: #27272a;
   --sidebar-accent-foreground: #FFFBFF;
   --sidebar-border: #27272a;
-  --sidebar-ring: #14b8a6;
+  --sidebar-ring: #7089A8;
 }
 
 @layer base {
@@ -152,16 +152,16 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #14b8a6;
+    background: #7089A8;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #0f766e;
+    background: #435A76;
   }
 
   /* Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #14b8a6 transparent;
+    scrollbar-color: #7089A8 transparent;
   }
 }
