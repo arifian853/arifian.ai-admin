@@ -1,8 +1,8 @@
 /**
- * Chat Component (Groq LLaMA 3.3 70B)
+ * Chat Component (Groq GPT-OSS 20B)
  * 
  * Chat interface for the RAG AI assistant.
- * Uses /chat endpoint with Groq LLaMA 3.3 70B Versatile.
+ * Uses /chat endpoint with Groq GPT-OSS 20B.
  * 
  * Features:
  * - Real-time chat with Groq model
@@ -68,7 +68,7 @@ export const Chat = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isHealthy, setIsHealthy] = useState<boolean | null>(null);
-  const [modelInfo, setModelInfo] = useState<string>('llama-3.3-70b-versatile');
+  const [modelInfo, setModelInfo] = useState<string>('openai/gpt-oss-20b');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Check health on mount
@@ -185,11 +185,11 @@ export const Chat = () => {
                 <CardTitle className="text-lg flex items-center gap-2">
                   Groq Chat
                   <Badge variant="secondary" className="text-xs">
-                    LLaMA 3.3 70B
+                    GPT-OSS 20B
                   </Badge>
                 </CardTitle>
                 <CardDescription>
-                  RAG Chat with Groq LLaMA 3.3 70B (endpoint: /chat)
+                  RAG Chat with Groq GPT-OSS 20B (endpoint: /chat)
                 </CardDescription>
               </div>
             </div>
@@ -231,7 +231,7 @@ export const Chat = () => {
               <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
                 <Zap className="w-12 h-12 mb-4 opacity-50" />
                 <p className="text-lg font-medium">Start a conversation</p>
-                <p className="text-sm">Test Groq LLaMA 3.3 70B with RAG retrieval</p>
+                <p className="text-sm">Test Groq GPT-OSS 20B with RAG retrieval</p>
               </div>
             ) : (
               messages.map((message, index) => (
